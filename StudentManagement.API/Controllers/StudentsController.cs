@@ -49,6 +49,17 @@ public class StudentsController : ControllerBase
         );
     }
 
+    [HttpPost("add-students")]
+    public async Task<ActionResult> CreateStudents(List<Student> students)
+    {
+        _context.Students.AddRange(students);
+
+        await _context.SaveChangesAsync();
+
+        //return Ok(students);
+        return Created("", students);
+    }
+
     // PUT: api/Students/5
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateStudent(
