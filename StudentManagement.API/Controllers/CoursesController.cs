@@ -21,8 +21,8 @@ public class CoursesController : ControllerBase
     public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
     {
         var courses = await _context.Courses
-    .Include(c => c.Teacher)
-    .ToListAsync();
+        .Include(c => c.Teacher)
+        .ToListAsync();
         return  courses;
     }
 
@@ -56,14 +56,26 @@ public class CoursesController : ControllerBase
 
     // PUT: api/Courses/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCourse(
-        int id,
-        Course course)
+    public async Task<IActionResult> UpdateCourse(int id, Course course)
     {
         if (id != course.Id)
             return BadRequest();
+        var teacherExists = await _context.Teachers
+            .AnyAsync(t => t.Id == course.TeacherId);
 
-        _context.Entry(course).State = EntityState.Modified;
+        if (!teacherExists)
+            return BadRequest("Teacher does not exist.");
+
+
+        var existingCourse = await _context.Courses.FindAsync(id);
+
+        if (existingCourse == null)
+            return NotFound();
+
+        existingCourse.Name = course.Name;
+        existingCourse.Code = course.Code;
+        existingCourse.Credits = course.Credits;
+        existingCourse.TeacherId = course.TeacherId;
 
         await _context.SaveChangesAsync();
 
