@@ -117,6 +117,7 @@ public class TeachersController : ControllerBase
     }
 
     // DELETE: api/Teachers/5
+   
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTeacher(int id)
     {
@@ -125,11 +126,17 @@ public class TeachersController : ControllerBase
         if (teacher == null)
             return NotFound();
 
+        var hasCourses = await _context.Courses
+            .AnyAsync(c => c.TeacherId == id);
+
+        if (hasCourses)
+            return Conflict("This teacher cannot be deleted because they have courses assigned.");
+
         _context.Teachers.Remove(teacher);
 
         await _context.SaveChangesAsync();
 
         return NoContent();
     }
-    
+
 }

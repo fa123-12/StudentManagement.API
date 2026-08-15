@@ -46,7 +46,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstName\": \"Fatima zahra\",\r\n    \"lastName\": \"el arbaoui\",\r\n    \"email\": \"elarbaouifati@gmail.com\",\r\n    \"BirthDate\":\"2001-12-21\"\r\n}",
+              "raw": "{\r\n    \"firstName\": \"ahlam\",\r\n    \"lastName\": \"el arbaoui\",\r\n    \"email\": \"elarbaouifati@gmail.com\",\r\n    \"BirthDate\":\"2001-12-21\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -92,14 +92,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/Students/2",
+              "raw": "{{baseUrl}}/api/Students/5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "Students",
-                "2"
+                "5"
               ]
             }
           },
@@ -123,7 +123,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":1,\r\n    \"firstName\":\"Firdaws\",\r\n    \"BirthDate\":\"2024-07-19\"\r\n}",
+              "raw": "{\r\n    \"id\":1,\r\n    \"FirstName\":\"Firdaws\",\r\n    \"BirthDate\":\"2024-07-19\",\r\n    \"LastName\":\"EL ARBAOUI\",\r\n    \"StudentNumber\":\"GF20245\",\r\n    \"Email\":\"Firdaws@gmail.com\"\r\n\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -161,14 +161,14 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/Students/2",
+              "raw": "{{baseUrl}}/api/Students/7",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "Students",
-                "2"
+                "7"
               ]
             }
           },
@@ -212,6 +212,36 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get student by invalid ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"this id not found\", function () {\r\n    pm.response.to.have.status(404);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "students",
+                "20"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -247,17 +277,6 @@
         },
         {
           "name": "list of teachers",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
-              }
-            }
-          ],
           "request": {
             "method": "GET",
             "header": [],
@@ -271,14 +290,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/teachers/1",
+              "raw": "{{baseUrl}}/api/teachers/",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "teachers",
-                "1"
+                ""
               ]
             }
           },
@@ -299,14 +318,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/teachers/2",
+              "raw": "{{baseUrl}}/api/teachers/5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "teachers",
-                "2"
+                "5"
               ]
             }
           },
@@ -319,7 +338,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{    \"id\":3,\r\n    \"firstName\": \"Fatima zahra\",\r\n    \"lastName\": \"el arbaoui\",\r\n    \"email\": \"elarbaouifati@gmail.com\",\r\n    \"BirthDate\":\"2001-12-21\"\r\n}",
+              "raw": "{    \"id\":5,\r\n    \"firstName\": \"Fatima zahra\",\r\n    \"lastName\": \"el arbaoui\",\r\n    \"email\": \"elarbaouifati@gmail.com\",\r\n    \"BirthDate\":\"2001-12-21\",\r\n    \"TeacherCode\":\"ASDF2456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -327,14 +346,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/teachers/3",
+              "raw": "{{baseUrl}}/api/teachers/5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "teachers",
-                "3"
+                "5"
               ]
             }
           },
@@ -355,14 +374,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/teachers/1",
+              "raw": "{{baseUrl}}/api/teachers/5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "teachers",
-                "1"
+                "5"
               ]
             }
           },
@@ -454,7 +473,7 @@
         {
           "name": "Add course",
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
@@ -466,14 +485,13 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/api/courses/12",
+              "raw": "{{baseUrl}}/api/courses",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
-                "courses",
-                "12"
+                "courses"
               ]
             }
           },
@@ -513,7 +531,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{    \"id\":2,\r\n    \"name\": \".NET\"\r\n    \r\n}",
+              "raw": "{  \r\n    \"Id\":2,\r\n    \"Name\": \".NET\",\r\n    \"Credits\":3,\r\n    \"Code\":\"DE2347\",\r\n    \"TeacherId\":5\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -528,6 +546,44 @@
               "path": [
                 "api",
                 "courses",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/courses/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "courses",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Courses/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Courses",
                 "2"
               ]
             }
